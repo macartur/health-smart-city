@@ -1,24 +1,33 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development environment
 
-Things you may want to cover:
+To facilitate the development environment setup, we provide a Vagrantfile that
+automates all the configuration. You need to have the softwares below installed
+in your PC:
 
-* Ruby version
+* Virtualbox
+* Vagrant
 
-* System dependencies
+When you have both of them installed you just need to run the command below:
 
-* Configuration
+```bash
+$ vagrant up --provider=virtualbox
+```
 
-* Database creation
+Now you are able to login into the virtual machine and work there. To login run:
 
-* Database initialization
+```bash
+$ vagrant ssh
+```
 
-* How to run the test suite
+The application source code is shared with the virtual machine, you can see it
+in /vagrant directory. To run application execute the commands below:
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+$ cd /vagrant
+$ bundle exec rails s
+```
 
-* Deployment instructions
-
-* ...
+After that you are able to access it via http://localhost:3000 in your host
+machine.
