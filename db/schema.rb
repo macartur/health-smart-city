@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207120331) do
+ActiveRecord::Schema.define(version: 20170209132004) do
 
   create_table "health_centres", force: :cascade do |t|
     t.float    "long"
@@ -22,6 +22,25 @@ ActiveRecord::Schema.define(version: 20170207120331) do
     t.string   "census_district"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "procedures", force: :cascade do |t|
+    t.string   "date"
+    t.string   "age_code"
+    t.string   "age_number"
+    t.string   "gender"
+    t.string   "race"
+    t.string   "different_district"
+    t.string   "cep_patient"
+    t.string   "cid_associated"
+    t.string   "cid_primary"
+    t.string   "cid_secondary"
+    t.string   "ethnicity"
+    t.float    "long"
+    t.float    "lat"
+    t.integer  "cnes_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
 end
