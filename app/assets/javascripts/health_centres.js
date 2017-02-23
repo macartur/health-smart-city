@@ -4,7 +4,7 @@ var circles = []
 var info_box_opened;
 var cluster_status = false;
 var markerCluster = null;
-var circle_color = ['#003300', '#ffff00', '#ff0000']
+var circle_color = ['#003300', '#15ff00', '#ff0000']
 
 function show_procedures(procedures)
 {
@@ -22,8 +22,34 @@ function show_procedures(procedures)
         });
   });
 
- markerCluster = new MarkerClusterer(map, markers, {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
- var radius = [1000, 5000, 10000];
+ var clusterStyles = [
+   {
+     textColor: 'black',
+     url: 'm1.png',
+     height: 44,
+     width: 44
+   },
+  {
+     textColor: 'black',
+     url: 'm2.png',
+     height: 75,
+     width: 77
+   },
+  {
+     textColor: 'black',
+     url: 'm3.png',
+     height: 112,
+     width: 111
+   }
+ ];
+
+ var options = {
+   styles: clusterStyles,
+   zoomOnClick: false,
+   minimumClusterSize: 2};
+
+ markerCluster = new MarkerClusterer( map, markers, options);
+ var radius = [10000, 5000, 1000];
 
  for(var i = 0; i<3; i++)
  {
@@ -174,9 +200,9 @@ function create_legend(){
 }
 
 function populate_legend(){
-  styles = [{'name': '1 km', 'color': circle_color[0]},
+  styles = [{'name': '1 km', 'color': circle_color[2]},
             {'name': '5 km', 'color': circle_color[1]},
-            {'name': '10 km', 'color': circle_color[2]}]
+            {'name': '10 km', 'color': circle_color[0]}]
 
   var $legend = $('#legend')
   $.each(styles, function(index, style){
