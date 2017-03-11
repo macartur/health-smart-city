@@ -1,16 +1,35 @@
 @import "bootstrap-sprockets"
 @import "bootstrap"
 
+.map-wrapper
+    position: absolute
+    height: 60%
+    left: 0
+
 #map
     position: absolute
     height: 100%
     width: 100%
     left: 0
 
+#specialty-map-filter
+    height: 575px
+    width: 100%
+
+.container
+    margin-top: 4%
+    width: 100%
+
 .navbar-inverse
     background-color: rgba(0, 0, 0, .7)
-    margin: auto
     border-radius: 0
+
+nav .nav.navbar-nav.navbar-left
+    margin-left: 25px
+
+a.nav-link.glyphicon.glyphicon-question-sign
+    margin-right: 25px
+    font-size: 25pt
 
 #legend
     font-family: Arial, sans-serif
@@ -37,7 +56,6 @@
     width: auto
     height: 10px
 
-
 #dashboard_legend
     border: 2px solid black
     position: fixed
@@ -59,3 +77,87 @@
 
 .navbar-inverse .navbar-nav > li > a
     color: white
+
+#labelOverlay
+    width: 80%
+    position: absolute
+    top: 22%
+    left: 6%
+    text-align: center
+    cursor: default
+
+#labelOverlay p.n_procedures
+    line-height: 0.5
+    font-size: 20pt
+    color: #8e8e8e
+    width: 100%
+
+#labelOverlay p.atendimentos
+    line-height: 0.5
+    font-size: 12pt
+    color: #cdcdcd
+    width: 100%
+
+#distance-legend
+    width:  80%
+    height:  50px
+    position: relative
+    top:  0%
+    right: -15%
+
+#distance-legend .color,
+    float: left
+    height: 20px
+    width: 20px
+    border-style: double
+
+#distance-legend .item
+    margin-bottom: -7px
+
+#distance-legend .text
+    margin-left: 30px
+
+#distance-legend .color.lt-1km
+    background-color: green
+
+#distance-legend .color.lg-1km-lt-5
+    background-color: yellow
+
+#distance-legend .color.lg-5km-lt-10
+    background-color: orange
+
+#distance-legend .color.lg-10km
+    background-color: red
+
+#metric-board
+    width: 100%
+    height: 35%
+    padding: 20px
+
+#metric-board #text
+    font-size: 16pt
+    text-align: center
+
+#metric-board #value
+    font-size: 42pt
+    text-align: center
+    font-weight: bold
+
+.graphs-bottom
+    position: absolute
+    bottom: 0
+    height: 32%
+
+#dashboard_legend .list
+    list-style: none
+    display: block
+
+#dashboard_legend .list li
+    margin-right: 10px
+
+#dashboard_legend .list span
+    border: 1px solid #ccc
+    float: left
+    width: 12px
+    height: 12px
+    margin: 2px

@@ -64,7 +64,7 @@ function create_procedures_per_specialties() {
 function get_color_slice(){
   var slices= {}
   var idx = 0;
-  $.each(specialties_color, function(data, value){ slices[idx++] = { color: value} });
+  $.each(specialties_color, function(data, value){  slices[idx++] = { color: value} });
   return slices
 }
 
@@ -90,11 +90,11 @@ function create_specialties_distance_between_patients_hospital() {
     legend: { position: 'none' },
   };
   var distance_average_path = 'specialties_procedure_distance_average'
-  $.getJSON(distance_average_path, function(data){ draw_chart(header, data, chart, options, specialties_color)});
+  $.getJSON(distance_average_path, function(data){draw_chart(header, data, chart, options, specialties_color)});
 }
 
 
-function draw_chart(header, data, chart, options, color){
+function draw_chart(header, data, chart, options, color=specialties_color){
   var values = []
   $.each(data, function(name, number)
   {
@@ -112,14 +112,15 @@ function draw_chart(header, data, chart, options, color){
                       type: "string",
                       role: "annotation" },
                   2]);
+
   chart.draw(view, options);
 }
 
 function dashboard_legend(){
   text = ""
-  dashboard = $('#dashboard_legend p')
+  dashboard = $('#dashboard_legend .list')
   $.each(specialties_color, function(name, color){
-    dashboard.append('<div style="float: left;background:'+color+';width:20px; height: 20px;margin-left: 2px;margin-right: 20px;"></div><div class="pull-left">'+name+'</div><br>')
+    dashboard.append("<li><span style='background-color: "+color+";'></span> "+name+"</li>")
   });
 }
 
