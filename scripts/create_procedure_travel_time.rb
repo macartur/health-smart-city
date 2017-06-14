@@ -34,7 +34,7 @@ def get_procedures_travel_time
   end
 
   procedures_h2.each do |procedure|
-    value = data1["#{procedure.lat},#{procedure.long}"]
+    value = data2["#{procedure.lat},#{procedure.long}"]
 
     if value
        result[procedure.specialty.name][0] += value.to_i

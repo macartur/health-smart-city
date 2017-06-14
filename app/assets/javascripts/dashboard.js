@@ -54,7 +54,7 @@ function create_procedures_per_specialties() {
 
   var options = {
     title:'% de procedimentos por especialidades',
-    slices: get_color_slice(),
+    slices: get_color_slice()
   };
 
   var specialty_path = "specialties_count"
@@ -68,11 +68,11 @@ function populate_procedures_by_date(){
    var options = {
      title: 'Número de Procedimentos por mês',
      series: {
-       0: {axis: 'Número de Procedimentos'},
+       0: {axis: 'Número de Procedimentos'}
      },
      axes: {
        y: {
-         Temps: {label: 'Número de Procedimentos'},
+         Temps: {label: 'Número de Procedimentos'}
        }
      },
      legend: {position: 'none'}
@@ -99,15 +99,10 @@ function create_line_chart(values, options){
 
 
 function create_travel_time_chart(){
-  var chart = new google.visualization.BarChart(document.getElementById("chart_spec_time_average"));
-  var header = ["Especialidades", "Tempo médio de viagem em minutos", {role: "style"}]
-  var options = {
-    title: "Tempo médio de viagem para realização de procedimentos por especialidade",
-    legend: {position: 'none'}
-  };
-  var distance_average_path = '/procedures_travel_time.json'
-  $.getJSON(distance_average_path, function(data){draw_chart(header, data, chart, options, specialties_color)});
-
+  get_data_to_draw_chart("Tempo médio de viagem em minutos",
+                         "Tempo médio de viagem para realização de procedimentos por especialidade",
+                         "/procedures_travel_time.json",
+                         "chart_spec_time_average");
 }
 
 function get_color_slice(){
@@ -123,7 +118,7 @@ function create_specialties_vs_time_to_arrive() {
 
   var options = {
     slices: get_color_slice(),
-    legend: { position: 'none' },
+    legend: { position: 'none' }
   };
 
   var specialty_path = ""
@@ -131,14 +126,21 @@ function create_specialties_vs_time_to_arrive() {
 }
 
 function create_specialties_distance_between_patients_hospital() {
-  var chart = new google.visualization.BarChart(document.getElementById("chart_spec_distance_average"));
-  var header = ["Especialidades", "Distância média em km", {role: "style"}]
+  get_data_to_draw_chart("Distância média em km",
+                         "Distância média de procedimentos por especialidade",
+                         "specialties_procedure_distance_average",
+                         "chart_spec_distance_average");
+}
+
+function get_data_to_draw_chart(header_title, options_title, path, chart_name){
+  var chart = new google.visualization.BarChart(document.getElementById(chart_name));
+  var header = ["Especialidades", header_title, {role: "style"}]
   var options = {
-    title: "Distância média de procedimentos por especialidade",
+    title: options_title,
     legend: {position: 'none'}
   };
-  var distance_average_path = 'specialties_procedure_distance_average'
-  $.getJSON(distance_average_path, function(data){draw_chart(header, data, chart, options, specialties_color)});
+
+  $.getJSON(path, function(data){draw_chart(header, data, chart, options, specialties_color)});
 }
 
 function draw_chart(header, data, chart, options, color=specialties_color){
@@ -149,9 +151,9 @@ function draw_chart(header, data, chart, options, color=specialties_color){
   });
 
   values.unshift(header)
-  var data = google.visualization.arrayToDataTable(values);
+  var data_table = google.visualization.arrayToDataTable(values);
 
-  var view = new google.visualization.DataView(data);
+  var view = new google.visualization.DataView(data_table);
 
   view.setColumns([0, 1,
                   { calc: "stringify",

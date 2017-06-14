@@ -10,11 +10,11 @@ Rails.application.require_environment!
 
 def load_json(file)
   json_file = File.read(file)
-  distances = JSON.parse(json_file)
+  JSON.parse(json_file)
 end
 
 def parse_location(location)
-  lat, lng = location.split(',')
+  location.split(',')
 end
 
 def find_procedure(procedures, lat, lng)
@@ -22,7 +22,7 @@ def find_procedure(procedures, lat, lng)
 end
 
 def regularize_specialties(specialties, num_specialties)
-  specialties.each do |specialty, time|
+  specialties.each do |specialty, _time|
     specialties[specialty] = specialties[specialty] / num_specialties[specialty]
   end
 end
